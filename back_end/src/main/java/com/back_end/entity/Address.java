@@ -16,11 +16,11 @@ import java.io.Serializable;
 @Embeddable
 public class Address implements Serializable {
 
-    private String address;
-
-    private String country;
+    private String street;
 
     private String city;
+
+    private String state;
 
     private String postalCode;
 

@@ -1,7 +1,5 @@
 package com.back_end.dto;
 
-import com.back_end.entity.Address;
-import com.back_end.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -8,11 +8,11 @@ import lombok.*;
 @AllArgsConstructor
 public class AddressDto {
 
-    private String address;
-
-    private String country;
+    private String street;
 
     private String city;
+
+    private String state;
 
     private String postalCode;
 
