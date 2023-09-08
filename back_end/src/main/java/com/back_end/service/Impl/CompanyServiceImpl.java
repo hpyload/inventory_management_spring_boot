@@ -3,6 +3,7 @@ package com.back_end.service.Impl;
 import com.back_end.dto.CompanyDto;
 import com.back_end.entity.Company;
 import com.back_end.exception.InvalidResourceException;
+import com.back_end.exception.ResourceNotFoundException;
 import com.back_end.mapper.Mapper;
 import com.back_end.repository.CompanyRepository;
 import com.back_end.service.CompanyService;
@@ -48,7 +49,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyDto findById(Long id) {
-        Company company = companyRepository.findById(id).get();
+        Company company = companyRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Company", "CompanyId", id));
         return mapper.mapToDto(company , CompanyDto.class);
     }
 
@@ -62,7 +64,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void delete(Long id) {
-        Company company = companyRepository.findById(id).get();
+                .orElseThrow(()-> new ResourceNotFoundException("Company", "CompanyId", id));
         companyRepository.delete(company);
     }
 
