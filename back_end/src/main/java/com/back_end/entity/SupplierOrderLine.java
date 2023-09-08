@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "supplier_order_lines")
 public class SupplierOrderLine extends BaseEntity{
+
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;

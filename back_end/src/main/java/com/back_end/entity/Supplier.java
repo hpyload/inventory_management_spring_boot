@@ -33,6 +33,7 @@ public class Supplier extends BaseEntity{
     private String phone;
 
     private Long companyId;
+
     @OneToMany(mappedBy = "supplier")
     private List<SupplierOrder> supplierOrders;
 
