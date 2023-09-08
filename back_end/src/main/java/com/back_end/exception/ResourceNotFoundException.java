@@ -11,12 +11,12 @@ import java.util.List;
 public class ResourceNotFoundException extends RuntimeException {
     private String resourceName;
     private String fieldName;
-    private Integer fieldValue;
+    private Long fieldValue;
     private final String message;
     private List<String> errors;
 
     public ResourceNotFoundException(String resourceName, String fieldName,
-                                     Integer fieldValue, List<String> errors) {
+                                     Long fieldValue, List<String> errors) {
         super();
         this.resourceName = resourceName;
         this.fieldName = fieldName;
@@ -31,7 +31,7 @@ public class ResourceNotFoundException extends RuntimeException {
         this.errors = errors;
     }
 
-    public ResourceNotFoundException(String resourceName, String fieldName, Integer fieldValue) {
+    public ResourceNotFoundException(String resourceName, String fieldName, Long fieldValue) {
         super();
         this.resourceName = resourceName;
         this.fieldName = fieldName;
