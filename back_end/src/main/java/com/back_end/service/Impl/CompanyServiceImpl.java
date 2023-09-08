@@ -58,7 +58,7 @@ public class CompanyServiceImpl implements CompanyService {
     public List<CompanyDto> findAll() {
         List<Company> companies = companyRepository.findAll();
         return companies.stream()
-                .map(article -> mapper.mapToDto(article, CompanyDto.class))
+                .map(company -> mapper.mapToDto(company, CompanyDto.class))
                 .collect(Collectors.toList());
     }
 

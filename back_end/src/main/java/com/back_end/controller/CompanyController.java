@@ -27,7 +27,7 @@ public class CompanyController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<CompanyDto>> getAllDepartment() {
+    public ResponseEntity<List<CompanyDto>> getAllCompanies() {
         return new ResponseEntity<>(companyService.findAll(), HttpStatus.OK);
     }
 

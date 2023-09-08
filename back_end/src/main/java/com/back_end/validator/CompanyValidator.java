@@ -1,7 +1,6 @@
 package com.back_end.validator;
 
 import com.back_end.dto.CompanyDto;
-import com.back_end.handler.ErrorDto;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class CompanyValidator {
 
-    public static final List<String> validate(CompanyDto dto) {
+    public static List<String> validate(CompanyDto dto) {
         List<String> errors = new ArrayList<>();
         if (dto == null) {
             errors.add("Please provide the company name");
