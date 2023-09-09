@@ -1,5 +1,6 @@
 package com.back_end.handler;
 
+import com.back_end.exception.InvalidOperationException;
 import com.back_end.exception.InvalidResourceException;
 import com.back_end.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDto errorDto = new ErrorDto(new Date(),
                 ErrorCode.RESOURCE_NOT_VALID, exception.getMessage(),
                 exception.getErrors());
+        return new ResponseEntity<>(errorDto,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidOperationException.class)
+    public ResponseEntity<ErrorDto> handleInvalidOperationException(InvalidOperationException exception) {
+        ErrorDto errorDto = new ErrorDto(new Date(),
+                ErrorCode.RESOURCE_ALREADY_IN_USE, exception.getMessage());
         return new ResponseEntity<>(errorDto,HttpStatus.BAD_REQUEST);
     }
 }

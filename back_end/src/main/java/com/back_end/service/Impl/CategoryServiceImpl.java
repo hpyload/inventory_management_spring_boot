@@ -1,10 +1,13 @@
 package com.back_end.service.Impl;
 
 import com.back_end.dto.CategoryDto;
+import com.back_end.entity.Article;
 import com.back_end.entity.Category;
+import com.back_end.exception.InvalidOperationException;
 import com.back_end.exception.InvalidResourceException;
 import com.back_end.exception.ResourceNotFoundException;
 import com.back_end.mapper.Mapper;
+import com.back_end.repository.ArticleRepository;
 import com.back_end.repository.CategoryRepository;
 import com.back_end.service.CategoryService;
 import com.back_end.validator.CategoryValidator;
@@ -22,6 +25,7 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
+    private ArticleRepository articleRepository;
     private Mapper<Category, CategoryDto> mapper;
 
     @Override
@@ -74,6 +78,12 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category category = categoryRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Category", "categoryId", id));
+
+        List<Article> articles = articleRepository.findAllByCategoryId(id);
+        if (!articles.isEmpty()) {
+            throw new InvalidOperationException("Impossible to delete this category as it is already in use");
+        }
+
         categoryRepository.delete(category);
     }
 

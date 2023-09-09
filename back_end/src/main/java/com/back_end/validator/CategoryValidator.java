@@ -12,10 +12,7 @@ public class CategoryValidator {
         List<String> errors = new ArrayList<String>();
 
         if (dto == null || !StringUtils.hasLength(dto.getCode())) {
-            errors.add("Please provide the company name");
-            errors.add("Please provide the company name");
-            errors.add("Please provide the company name");
-            errors.add("Please provide the company name");
+            errors.add("Please provide the category code");
         }
         return errors;
     }

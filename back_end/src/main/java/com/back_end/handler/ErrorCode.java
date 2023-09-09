@@ -7,7 +7,8 @@ public enum ErrorCode {
     RESOURCE_NOT_FOUND(1000),
     RESOURCE_NOT_VALID(1001),
     INVALID_REQUEST(1002),
-    SERVER_ERROR(1003);
+    SERVER_ERROR(1003),
+    RESOURCE_ALREADY_IN_USE(1002);
 
     private final int code;
 
