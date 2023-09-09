@@ -2,9 +2,12 @@ package com.back_end.service.Impl;
 
 import com.back_end.dto.CustomerDto;
 import com.back_end.entity.Customer;
+import com.back_end.entity.CustomerOrder;
+import com.back_end.exception.InvalidOperationException;
 import com.back_end.exception.InvalidResourceException;
 import com.back_end.exception.ResourceNotFoundException;
 import com.back_end.mapper.Mapper;
+import com.back_end.repository.CustomerOrderRepository;
 import com.back_end.repository.CustomerRepository;
 import com.back_end.service.CustomerService;
 import com.back_end.validator.CustomerValidator;
@@ -22,6 +25,7 @@ import java.util.stream.Collectors;
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
+    private CustomerOrderRepository customerOrderRepository;
     private Mapper<Customer, CustomerDto> mapper;
 
     @Override
@@ -74,6 +78,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Customer", "customerId", id));
+
+        List<CustomerOrder> customerOrders = customerOrderRepository.findAllByCustomerId(id);
+        if (!customerOrders.isEmpty()) {
+            throw new InvalidOperationException("Impossible to delete this customer as it is already in use in customer orders");
+        }
+
         customerRepository.delete(customer);
     }
 }
