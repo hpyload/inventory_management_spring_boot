@@ -25,6 +25,10 @@ public class ResourceNotFoundException extends RuntimeException {
         this.errors = errors;
     }
 
+    public ResourceNotFoundException(String message) {
+        this.message = message;
+    }
+
     public ResourceNotFoundException(String message, List<String> errors) {
         super();
         this.message = message;

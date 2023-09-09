@@ -49,6 +49,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyDto findById(Long id) {
+        if (id == null) {
+            log.error("Company id is null");
+            throw new ResourceNotFoundException("Company id is null");
+        }
+
         Company company = companyRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Company", "CompanyId", id));
         return mapper.mapToDto(company , CompanyDto.class);
@@ -64,6 +69,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void delete(Long id) {
+        if (id == null) {
+            log.error("Company id is null");
+            throw new ResourceNotFoundException("Company id is null");
+        }
+
         Company company = companyRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Company", "CompanyId", id));
         companyRepository.delete(company);
